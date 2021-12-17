@@ -6,4 +6,4 @@ npm install
 # 2. You can run the server with 
 npm start
 
-# 3. Navigate through files in the project and explore whatever you're interested in
+# 3. Navigate through files in the project and explore whatever you're interested in 🚀
