@@ -6,6 +6,7 @@ function authJWT() {
   return expressJwt({
     secret,
     algorithms: ["HS256"],
+    isRevoked: isRevoked,
   }).unless({
     path: [
       {
@@ -21,6 +22,13 @@ function authJWT() {
       `${api}/users/register`,
     ],
   });
+}
+
+async function isRevoked(req, payload, done) {
+  if (!payload.isAdmin) {
+    done(null, true);
+  }
+  done();
 }
 
 export default authJWT;
