@@ -10,7 +10,8 @@ const api = process.env.API_URL;
 
 // Importing routes
 import productsRouter from "./routers/products.js";
-import categoriesRouter from "./routers/categories.js"
+import categoriesRouter from "./routers/categories.js";
+import usersRouter from "./routers/users.js";
 
 app.use(cors());
 app.options("*", cors());
@@ -21,7 +22,8 @@ app.use(morgan("tiny"));
 
 // Products router
 app.use(`${api}/products`, productsRouter);
-app.use(`${api}/categories`, categoriesRouter)
+app.use(`${api}/categories`, categoriesRouter);
+app.use(`${api}/users`, usersRouter);
 
 // Configuration for DB connection
 mongoose
