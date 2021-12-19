@@ -25,6 +25,16 @@ router.get("/:id", async (req, res) => {
   res.status(200).send(user);
 });
 
+router.get("/get/count", async (req, res) => {
+  const usersCount = await User.countDocuments();
+
+  if (!usersCount) {
+    return res.status(500).send({ success: false, message: "No users found" });
+  }
+
+  res.status(200).send({ usersCount: usersCount });
+});
+
 router.post("/", async (req, res) => {
   let user = new User({
     name: req.body.name,
@@ -132,6 +142,18 @@ router.put("/:id", async (req, res) => {
   }
 
   res.status(200).send(updatedUser);
+});
+
+router.delete("/:id", async (req, res) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+  if (!user) {
+    res.status(404).send({
+      success: false,
+      message: `Cannot delete ${req.params.id} user`,
+    });
+  }
+
+  res.status(200).send(user);
 });
 
 export default router;
