@@ -13,6 +13,7 @@ import productsRouter from "./routers/products.js";
 import categoriesRouter from "./routers/categories.js";
 import usersRouter from "./routers/users.js";
 import authJWT from "./helpers/jwt.js";
+import errorHandler from "./helpers/error-handler.js";
 
 app.use(cors());
 app.options("*", cors());
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 // With this method, the API is secured with the token
 app.use(authJWT());
+app.use(errorHandler);
 
 // Products router
 app.use(`${api}/products`, productsRouter);
