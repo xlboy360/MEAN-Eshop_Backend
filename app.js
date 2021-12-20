@@ -12,6 +12,9 @@ const api = process.env.API_URL;
 import productsRouter from "./routers/products.js";
 import categoriesRouter from "./routers/categories.js";
 import usersRouter from "./routers/users.js";
+import orderRouter from "./routers/orders.js";
+
+// Helpers
 import authJWT from "./helpers/jwt.js";
 import errorHandler from "./helpers/error-handler.js";
 
@@ -29,6 +32,7 @@ app.use(errorHandler);
 app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/users`, usersRouter);
+app.use(`${api}/orders`, orderRouter);
 
 // Configuration for DB connection
 mongoose
