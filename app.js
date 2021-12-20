@@ -7,6 +7,7 @@ const app = express();
 
 import "dotenv/config";
 const api = process.env.API_URL;
+const __dirname = process.cwd();
 
 // Importing routes
 import productsRouter from "./routers/products.js";
@@ -27,6 +28,7 @@ app.use(morgan("tiny"));
 // With this method, the API is secured with the token
 app.use(authJWT());
 app.use(errorHandler);
+app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 
 // Products router
 app.use(`${api}/products`, productsRouter);
